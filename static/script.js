@@ -17,7 +17,7 @@ function generateCupcakeList(cupcake) {
 async function showCupcakes() {
     const response = await axios.get(`${BASE_URL}/cupcakes`);
 
-  for (let cupcakeData of response.data.cupcake) {
+  for (let cupcakeData of response.data.cupcakes) {
     let cupcake = $(generateCupcakeList(cupcakeData));
     $("#cupcake-list").append(cupcake);
   }
