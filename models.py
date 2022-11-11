@@ -28,6 +28,23 @@ class Cupcake(db.Model):
             'rating' : self.rating,
             'image' : self.image
         }
+    
+    def submit_cupcake(self, form):
+        flavor = form.flavor.data
+        size = form.size.data
+        rating = form.rating.data
+        image = form.image.data
+        cupcake = Cupcake(flavor=flavor, size=size, rating=rating, image=image)
+        db.session.add(cupcake)
+        return db.session.commit()
+
+    def edit_cupcake(self, Id, form):
+        cupcake = Cupcake.query.get(Id)
+        cupcake.flavor = form.flavor.data
+        cupcake.size = form.size.data
+        cupcake.rating = form.rating.data
+        cupcake.image = form.image.data
+        return db.session.commit()
 
 def connect_db(app):
     """Connect to database."""

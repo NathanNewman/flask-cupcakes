@@ -1,0 +1,82 @@
+body {
+    background-color: pink;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+h1 {
+    text-align: center;
+    color:darkmagenta;
+}
+
+h2 {
+    color:darkmagenta;
+}
+
+.cupcake-text {
+    color: darkmagenta;
+    font-weight: bold;
+}
+
+.cupcake-text:hover {
+    color:black;
+    cursor:pointer;
+}
+
+.cupcake-img {
+    width: 200px;
+}
+
+.cupcake-img:hover {
+    filter: brightness(50%);
+    cursor:pointer;
+}
+
+.delete-button {
+    background-color: darkmagenta;
+    color:white;
+    border:none;
+}
+
+.delete-button:hover {
+    background-color:black;
+    cursor:pointer;
+}
+
+#add-cupcake-button {
+    background-color: white;
+    color:darkmagenta;
+    border:none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#add-cupcake-button:hover {
+    background-color: gray;
+}
+
+#cupcake-img {
+    width: 200px;
+}
+
+#cupcake-text {
+    color:darkmagenta;
+}
+
+#back-button {
+    background-color:darkslategray;
+    color:white;
+    border:none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#back-button:hover {
+    background-color: black;
+}

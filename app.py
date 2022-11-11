@@ -3,6 +3,8 @@
 from flask import Flask, jsonify, request, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Cupcake
+from form import CupcakeForm
+
 
 
 app = Flask(__name__)
@@ -15,9 +17,26 @@ debug = DebugToolbarExtension(app)
 connect_db(app)
 db.create_all()
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def homepage():
-    return render_template('/index.html')
+    form = CupcakeForm()
+    if form.validate_on_submit():
+        cupcake = Cupcake()
+        cupcake.submit_cupcake(form)
+        return redirect('/')
+    else:
+        return render_template('/index.html', form=form)
+
+@app.route('/edit/<int:id>', methods=["GET", "POST"])
+def edit(id):
+    cupcake = Cupcake.query.get(id)
+    form = CupcakeForm()
+    if form.validate_on_submit():
+        cupcake = Cupcake()
+        cupcake.edit_cupcake(id, form)
+        return redirect(f"/edit/{id}")
+    else:
+        return render_template("/edit.html", form=form, cupcake=cupcake)
 
 # ------------------------------ API Routes --------------------------------------------------------
 @app.route('/api/cupcakes')
