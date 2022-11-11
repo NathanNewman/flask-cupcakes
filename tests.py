@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app import app
-from models import db, Cupcake
+from models import Cupcake, db
 
 # Use test database and don't clutter tests with SQL
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes_test'
@@ -47,6 +47,22 @@ class CupcakeViewsTestCase(TestCase):
         """Clean up fouled transactions."""
 
         db.session.rollback()
+
+    def test_homepag(self):
+        with app.test_client() as client:
+            resp = client.get("/")
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<h1>Cupcakes</h1>', html)
+
+    def test_edit(self):
+        with app.test_client() as client:
+            resp = client.get("/edit/1")
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<h2>Edit Cupcake</h2>', html)
 
     def test_list_cupcakes(self):
         with app.test_client() as client:

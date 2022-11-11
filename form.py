@@ -10,4 +10,4 @@ class CupcakeForm(FlaskForm):
     size = SelectField(
         "Size", choices=[('small', 'Small'), ('medium', 'Medium'), ('large', 'Large')])
     rating = IntegerField("Rating", validators=[InputRequired()])
-    image = StringField("Image")
+    image = StringField("Image URL")

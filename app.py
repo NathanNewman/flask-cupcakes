@@ -30,7 +30,7 @@ def homepage():
 @app.route('/edit/<int:id>', methods=["GET", "POST"])
 def edit(id):
     cupcake = Cupcake.query.get(id)
-    form = CupcakeForm()
+    form = CupcakeForm(obj=cupcake)
     if form.validate_on_submit():
         cupcake = Cupcake()
         cupcake.edit_cupcake(id, form)

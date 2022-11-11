@@ -16,7 +16,7 @@
           Size: {{ cupcake.size }} | Rating: {{ cupcake.rating }}/10
         </p>
         <a href="/">
-            <button id="back-button">Go Back</button>
+          <button id="back-button">Go Back</button>
         </a>
       </div>
       <div class="grid-child two">
@@ -24,7 +24,11 @@
         <form action="/edit/{{ cupcake.id }}" method="POST">
           {{ form.hidden_tag() }} {% for field in form if
           field.widget.input_type != 'hidden' %}
-          <p>{{ field.label }} {{ field }}</p>
+          <p>
+            {{ field.label }} {{ field }} {% for error in field.errors %}
+            <em class="error">{{ error }}</em>
+            {% endfor %}
+          </p>
           {% endfor %}
           <button id="add-cupcake-button">Edit Cupcake</button>
         </form>
