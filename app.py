@@ -4,13 +4,14 @@ from flask import Flask, jsonify, request, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Cupcake
 from form import CupcakeForm
+import os
 
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = "SECRET!"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'secret1')
 
 debug = DebugToolbarExtension(app)
 
